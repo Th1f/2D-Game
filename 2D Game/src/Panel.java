@@ -21,9 +21,6 @@ public class Panel extends JPanel implements Runnable {
     Thread gameClock;
     Player player =  new Player(this, keyH);
 
-    int posX = 100;
-    int posY =100;
-    int speed = 4;
     public Panel(){
         this.setPreferredSize(new Dimension(screenWidth,screenHeight));
         this.setBackground(Color.BLACK);

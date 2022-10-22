@@ -25,22 +25,27 @@ public class Player extends Entity {
 
     public void getImage(){
         try{
-            up = ImageIO.read(getClass().getResourceAsStream("/PlayerAssets/up.gif"));
+            up = ImageIO.read(getClass().getResourceAsStream("/PlayerAssets/up.png"));
         } catch(IOException e){
             System.out.println("bruh");
         }
         try{
-            down = ImageIO.read(getClass().getResourceAsStream("/PlayerAssets/down.gif"));
+            down1 = ImageIO.read(getClass().getResourceAsStream("/PlayerAssets/down1.png"));
         } catch(IOException e){
             System.out.println("bruh");
         }
         try{
-            left = ImageIO.read(getClass().getResourceAsStream("/PlayerAssets/left.gif"));
+            down = ImageIO.read(getClass().getResourceAsStream("/PlayerAssets/down2.png"));
         } catch(IOException e){
             System.out.println("bruh");
         }
         try{
-            right = ImageIO.read(getClass().getResourceAsStream("/PlayerAssets/right.gif"));
+            left = ImageIO.read(getClass().getResourceAsStream("/PlayerAssets/left.png"));
+        } catch(IOException e){
+            System.out.println("bruh");
+        }
+        try{
+            right = ImageIO.read(getClass().getResourceAsStream("/PlayerAssets/right.png"));
         } catch(IOException e){
             System.out.println("bruh");
         }
@@ -59,6 +64,14 @@ public class Player extends Entity {
         if(keyH.right){
             x += speed;
         }
+        spriteCounter++;
+        if(spriteCounter > 10){
+            if(spriteNum == 1)
+                spriteNum = 2;
+            if(spriteNum == 2)
+                spriteNum = 1; 
+            spriteNum = 0;
+        }
     }
 
     public void paint(Graphics2D g){
@@ -69,7 +82,10 @@ public class Player extends Entity {
             return;
         }
         if(keyH.down){
-            image = down;
+            if(spriteNum == 1)
+                image = down;
+            if(spriteNum == 2)
+                image = down1;
             g.drawImage(image,x,y,panel.tileSize,panel.tileSize,null);
             return;
         }
